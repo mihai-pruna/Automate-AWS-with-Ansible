@@ -10,3 +10,6 @@ Avoid hardcoding AWS secrets and keys inside playbooks, store them in an Ansible
                      aws_secret_key: my-aws-secret-access-key
     encrypt:         ansible-vault encrypt secrets.yaml
 
+EC2 instance to deploy a web application VPC, a subnet, security groups, and an Internet Gateway attached to the VPC. From AWS_infrastructure: put the code in an Ansible playbook ec2_playbook.yml after run it.
+
+
