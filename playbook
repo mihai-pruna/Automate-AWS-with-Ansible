@@ -1,0 +1,9 @@
+- hosts: localhost
+  vars_files:
+    - secrets.yml
+  tasks:
+    - ec2_instance_info:
+        aws_access_key_id: "{{ aws_access_key_id }}"
+        aws_secret_key: "{{ aws_secret_key }}"`
+
+#trigger the Ansible playbook while passing the password when prompted:ansible-playbook playbook.yml --ask-vault-pass
