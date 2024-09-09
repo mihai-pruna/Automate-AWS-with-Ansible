@@ -1,0 +1,32 @@
+ansible-inventory -i dynamic_inventory_aws_ec2.yml --graph
+@all:
+  |--@ungrouped:
+  |--@aws_ec2:
+  |  |--worker1
+  |  |--MyInstance
+  |  |--db1
+  |  |--Web1
+  |--@env_Testing:
+  |  |--worker1
+  |--@role_Worker:
+  |  |--worker1
+  |--@env_Production:
+  |  |--MyInstance
+  |  |--Web1
+  |--@role_Web:
+  |  |--MyInstance
+  |  |--Web1
+  |--@env_Staging:
+  |  |--db1
+  |--@role_Database:
+  |  |--db1
+
+# You can include only instances with specific tags, or all instances
+filters:
+  tag:Environment: Testing  # Only include instances with these tags`
+
+# When running your playbook, you can specify the inventory file:
+  ansible-playbook -i dynamic_inventory_aws_ec2.yml playbook.yml
+
+# To target only a specific group of instances, for example, only the Production instances, use the --limit argument:
+  ansible-playbook -i dynamic_inventory_aws_ec2.yml playbook.yml --limit ‘env_Production’
